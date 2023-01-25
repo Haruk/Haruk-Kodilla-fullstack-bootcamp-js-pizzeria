@@ -52,6 +52,8 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+  
+
   const app = {
     initMenu(){
       const thisApp = this;
@@ -183,7 +185,6 @@
       for(let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        // console.log(paramId, param);
     
         // for every option in this category
         for(let optionId in param.options) {
@@ -191,9 +192,8 @@
           const option = param.options[optionId];
           // console.log('yes!',optionId, option);
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-          const ImageSelected = "." + paramId + "-" + optionId;
-          const optionImage = thisProduct.imageWrapper.querySelector(ImageSelected);
-          console.log(optionImage); //undefined z querySelectora...
+          const imageSelected = '.' + paramId + '-' + optionId;
+          const optionImage = thisProduct.element.querySelector(select.menuProduct.imageWrapper).querySelector(imageSelected);
           // check if the option is not default
           if(optionSelected) {
               if(option.default !== true) {
@@ -218,12 +218,7 @@
           }
         }     
       }
-
     }
-  
-  
-
-
   }  
   app.init();
 }
