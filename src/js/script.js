@@ -6,6 +6,7 @@
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
+      cartProduct: '#template-cart-product', 
     },
     containerOf: {
       menu: '#product-list',
@@ -26,11 +27,31 @@
     },
     widgets: {
       amount: {
-        input: 'input[name="amount"]',
+        input: 'input.amount', 
         linkDecrease: 'a[href="#less"]',
         linkIncrease: 'a[href="#more"]',
       },
     },
+    
+    cart: {
+      productList: '.cart__order-summary',
+      toggleTrigger: '.cart__summary',
+      totalNumber: `.cart__total-number`,
+      totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+      subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
+      deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
+      form: '.cart__order',
+      formSubmit: '.cart__order [type="submit"]',
+      phone: '[name="phone"]',
+      address: '[name="address"]',
+    },
+    cartProduct: {
+      amountWidget: '.widget-amount',
+      price: '.cart__product-price',
+      edit: '[href="#edit"]',
+      remove: '[href="#remove"]',
+    },
+    
   };
 
   const classNames = {
@@ -38,6 +59,11 @@
       wrapperActive: 'active',
       imageVisible: 'active',
     },
+
+    cart: {
+      wrapperActive: 'active',
+    },
+
   };
 
   const settings = {
@@ -45,11 +71,19 @@
       defaultValue: 1,
       defaultMin: 1,
       defaultMax: 9,
-    }
+    }, 
+
+    cart: {
+      defaultDeliveryFee: 20,
+    },
+
   };
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
+
+    cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
+
   };
 
   class Product {
@@ -65,18 +99,16 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
-
-      // console.log('new Product:', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
-
+      // generate HTML based on template
       const generatedHTML = templates.menuProduct(thisProduct.data);
-
+      // create element using utils.createElementFromHTML
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       // find menu container
       const menuContainer = document.querySelector(select.containerOf.menu);
-      
+      // add element to menu
       menuContainer.appendChild(thisProduct.element);
     }
 
@@ -174,7 +206,7 @@
             // check if the option is default
             if(option.default == true) {
               // reduce price variable
-              price = price - option.price;
+              price = price + option.price;
             }
           }
           // update calculated price in the HTML
@@ -223,10 +255,10 @@
 
     setValue(value){
       const thisWidget = this;
-      console.log(value);
+      // console.log(value);
 
       const newValue = parseInt(value);
-      console.log('newValue:', newValue);
+      // console.log('newValue:', newValue);
 
       
       if (thisWidget.value !== newValue && !isNaN(newValue) && settings.amountWidget.defaultMax >= newValue && newValue >= settings.amountWidget.defaultMin){
@@ -263,6 +295,37 @@
     }
   }
 
+  class Cart{
+    constructor(element){
+      const thisCart = this;
+
+      thisCart.products = [];
+
+      thisCart.getElements(element);
+      thisCart.initActions();
+
+      console.log('New Cart', thisCart);
+    }
+
+    getElements(element){
+      const thisCart = this;
+
+      thisCart.dom = {};
+
+      thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      console.log(thisCart.dom.toggleTrigger);
+    }
+
+    initActions(){
+      const thisCart = this;
+
+      thisCart.dom.toggleTrigger.addEventListener('click', () => {
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+    }
+  }
+
   const app = {
     initMenu(){
       const thisApp = this;
@@ -276,6 +339,14 @@
       const thisApp = this;
       thisApp.data = dataSource;
     },
+
+    initCart(){
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+
+    },
     
     init: function(){
       const thisApp = this;
@@ -288,6 +359,7 @@
 
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
 app.init();
