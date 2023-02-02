@@ -76,7 +76,7 @@
     amountWidget: {
       defaultValue: 1,
       defaultMin: 1,
-      defaultMax: 9,
+      defaultMax: 10,
     }, 
 
     cart: {
@@ -289,7 +289,7 @@
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
     
           if(optionSelected) {
-            params[paramId].options[optionId]-option.label;
+            params[paramId].options[optionId]=option.label;
           }
         }
       }
@@ -450,8 +450,8 @@
       if (thisCart.subtotalPrice !== 0){
 
         for (let totalPrice of thisCart.dom.totalPrice){
-          thisCart.totalPrice.innerHTML = thisCart.subtotalPrice + thisCart.deliveryFee;
-          totalPrice.innerHTML = thisCart.totalPrice;
+          totalPrice.innerHTML = thisCart.subtotalPrice + thisCart.deliveryFee;
+          
         }
         thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
 
