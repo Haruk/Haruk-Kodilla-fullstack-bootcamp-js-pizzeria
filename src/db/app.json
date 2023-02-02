@@ -8,7 +8,20 @@
             "description":"Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.",
             "images":[
                "<img class=\"active\" src=\"images/doughnut.svg\">"
-            ]
+            ],
+            "params" :{
+               "cake": {
+                  "label":"Doughnut type",
+                  "type":"radios",
+                  "options":{
+                     "Basic":{
+                        "label":"Basic",
+                        "price":1,
+                        "default":true
+                     }
+                  }
+               }
+            }
          },
          {
             "id":"breakfast",
