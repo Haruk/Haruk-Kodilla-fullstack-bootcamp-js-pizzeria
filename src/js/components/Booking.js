@@ -1,37 +1,51 @@
 import { select, templates } from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
+import DatePicker from './DatePicker.js';
+import HourPicker from './HourPicker.js';
 
 class Booking {
   constructor(element){
 
-    this.render(element);
-    this.initWidgets();
+    const thisWidget = this;
+
+    thisWidget.render(element);
+    thisWidget.initWidgets();
   }
 
   render(bookingWidget){
+    const thisWidget = this;
 
-    this.dom = {};
-    this.dom.bookingWidget = bookingWidget;
+    thisWidget.dom = {};
+    thisWidget.dom.bookingWidget = bookingWidget;
 
     const generatedHTML = templates.bookingWidget();
-    this.elem = utils.createDOMFromHTML(generatedHTML);
+    thisWidget.elem = utils.createDOMFromHTML(generatedHTML);
 
-    this.dom.bookingWidget.appendChild(this.elem);
+    thisWidget.dom.bookingWidget.appendChild(thisWidget.elem);
 
-    this.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
-    this.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
+    thisWidget.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
+    thisWidget.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
+    thisWidget.dom.datePicker = document.querySelector(select.widgets.datePicker.wrapper);
+    thisWidget.dom.timePicker = document.querySelector(select.widgets.hourPicker.wrapper);
   }
 
   initWidgets(){
+    const thisWidget = this;
 
-    this.peopleAmountWidget = new AmountWidget(this.dom.peopleAmount);
-    this.dom.peopleAmount.addEventListener('update', () => {
+    thisWidget.peopleAmountWidget = new AmountWidget(thisWidget.dom.peopleAmount);
+    thisWidget.dom.peopleAmount.addEventListener('update', () => {
     });
 
-    this.hoursAmountWidget = new AmountWidget(this.dom.hoursAmount);
-    this.dom.hoursAmount.addEventListener('update', () => {
+    thisWidget.hoursAmountWidget = new AmountWidget(thisWidget.dom.hoursAmount);
+    thisWidget.dom.hoursAmount.addEventListener('update', () => {
     });
+
+    thisWidget.datePicker = new DatePicker(thisWidget.dom.datePicker);
+    thisWidget.dom.datePicker.addEventListener('update', () => {});
+
+    thisWidget.timePicker = new HourPicker(thisWidget.dom.timePicker);
+    thisWidget.dom.timePicker.addEventListener('update', () => {});
 
   }
 

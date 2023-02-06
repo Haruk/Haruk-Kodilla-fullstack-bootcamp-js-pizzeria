@@ -4,17 +4,20 @@ export const select = {
     cartProduct: '#template-cart-product', 
     bookingWidget: '#template-booking-widget',
   },
+
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
   },
+
   all: {
     menuProducts: '#product-list > .product',
     menuProductsActive: '#product-list > .product.active',
     formInputs: 'input, select',
   },
+
   menuProduct: {
     clickable: '.product__header',
     form: '.product__order',
@@ -23,6 +26,7 @@ export const select = {
     amountWidget: '.widget-amount',
     cartButton: '[href="#add-to-cart"]',
   },
+
   widgets: {
     amount: {
       input: 'input.amount', 
@@ -52,6 +56,7 @@ export const select = {
     phone: '[name="phone"]',
     address: '[name="address"]',
   },
+  
   cartProduct: {
     amountWidget: '.widget-amount',
     price: '.cart__product-price',
