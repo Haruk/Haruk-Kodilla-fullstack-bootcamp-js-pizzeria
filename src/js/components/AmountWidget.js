@@ -1,35 +1,37 @@
-import { select, settings } from '../settings.js';
+import { settings, select } from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget{
 
   constructor(element){
-    
     super(element, settings.amountWidget.defaultValue);
 
     const thisWidget = this;
 
-    thisWidget.getElements(element);
-    // thisWidget.setValue(settings.amountWidget.defaultValue);
+    thisWidget.getElements();
     thisWidget.initActions();
+    thisWidget.renderValue();
   }
+
   getElements(){
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
 
   isValid(value){
     return !isNaN(value)
-    // NaN Not a Number!
-      && value >=settings.amountWidget.defaultMin 
-      && value <= settings.amountWidget.defaultMax;
+    && value <= settings.amountWidget.defaultMax
+    && value >= settings.amountWidget.defaultMin;
   }
 
   renderValue(){
-    const thisWidget =this;
+    const thisWidget = this;
+
     thisWidget.dom.input.value = thisWidget.value;
   }
 
@@ -37,7 +39,7 @@ class AmountWidget extends BaseWidget{
     const thisWidget = this;
 
     thisWidget.dom.input.addEventListener('change', () => {
-      thisWidget.setValue(thisWidget.dom.input.value);
+      thisWidget.setValue(thisWidget.value);
     });
     thisWidget.dom.linkDecrease.addEventListener('click', (event) => {
       event.preventDefault();
@@ -48,6 +50,7 @@ class AmountWidget extends BaseWidget{
       thisWidget.setValue(thisWidget.value + 1);
     });
   }
+
 }
 
 export default AmountWidget;
