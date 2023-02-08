@@ -1,8 +1,9 @@
-import BaseWidget from '../components/BaseWidget.js';
+import BaseWidget from './BaseWidget.js';
 import utils from '../utils.js';
 import {select, settings} from '../settings.js';
 
 class DatePicker extends BaseWidget{
+
   constructor(wrapper){
     super(wrapper, utils.dateToStr(new Date()));
     const thisWidget = this;
@@ -10,6 +11,7 @@ class DatePicker extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
     thisWidget.initPlugin();
   }
+
   initPlugin(){
     const thisWidget = this;
 
@@ -25,7 +27,7 @@ class DatePicker extends BaseWidget{
       },
       disable: [
         function(date) {
-          return (date.getDay() === 1);
+          return (date.getDay() === 0);
         }
       ],
       onChange: function(selectedDates, dateStr) {
@@ -33,6 +35,7 @@ class DatePicker extends BaseWidget{
       },
     });
   }
+
   parseValue(value){
     return value;
   }
@@ -42,7 +45,6 @@ class DatePicker extends BaseWidget{
   }
 
   renderValue(){
-
   }
 }
 

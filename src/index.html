@@ -7,8 +7,9 @@
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="vendor/range-slider.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
       </div>
@@ -62,6 +64,140 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+
+      <div class="home-wrapper container">
+
+        <section id="actionBlocks">
+
+          <a href="#order" class="actionBlock order" aria-label="Place a online order">
+            <p>Order online</p>
+            <p>Delicious food delivered to your door</p>
+          </a>
+
+          <a href="#booking" class="actionBlock booking" aria-label="Book a table online">
+            <p>Book a table</p>
+            <p>Book your favorite table just for you</p>
+          </a>
+
+          <div class="actionBlock opening">
+            <p>opening hours:</p>
+            <p>Tue-Sun 12PM - 12AM</p>
+          </div>
+        </section>
+
+        <section id="carousel">
+          <div class="main-carousel">
+            <div class="carousel-cell">
+              <img src="/images/img/pizza-3.jpg" alt="">
+              <div>
+                <h3>Fantastic taste!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p>– Margaret Osborne</p>
+              </div>
+
+            </div>
+            <div class="carousel-cell">
+              <img src="/images/img/pizza-3.jpg" alt="">
+              <div>
+                <h3>Amaizing service!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p>– Margaret Osborne</p>
+              </div>
+
+            </div>
+            <div class="carousel-cell">
+              <img src="/images/img/pizza-3.jpg" alt="">
+              <div>
+                <h3>Gorgeous design!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p>– Margaret Osborne</p>
+              </div>
+
+            </div>
+            <div class="carousel-cell">
+              <img src="/images/img/pizza-3.jpg" alt="">
+              <div>
+                <h3>Best desert ever!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p>– Margaret Osborne</p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="gallery">
+          <div class="gallery__element">
+            <img src="/images/img/pizza-4.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery__element">
+            <img src="/images/img/pizza-5.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery__element">
+            <img src="/images/img/pizza-6.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery__element">
+            <img src="/images/img/pizza-7.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery__element">
+            <img src="/images/img/pizza-8.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+          <div class="gallery__element">
+            <img src="/images/img/pizza-9.jpg" alt="">
+            <div class="iconWrapper">
+              <a href="#" aria-label="Like icon">
+                <i class="fa-solid fa-heart"></i>
+              </a>
+              <a href="#" aria-label="Share icon">
+                <i class="fa-solid fa-share-nodes"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -176,6 +312,7 @@
 
     </article> <!-- .product -->
   </script>
+
   <script id="template-booking-widget" type="text/x-handlebars-template">
     <div class="booking-widget">
       <h2 class="page__title no-spacing">Book a table</h2>
@@ -234,8 +371,8 @@
           </div>
         </div>
         <div class="order-confirmation">
-          <input type="tel" name="phone" placeholder="Your phone">
-          <input type="text" name="address" placeholder="Your address">
+          <input type="tel" name="phone" placeholder="Your phone" required>
+          <input type="text" name="address" placeholder="Your address" required>
           <button type="submit" class="btn-secondary">Book table</button>
         </div>
       </form>
@@ -245,6 +382,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="https://kit.fontawesome.com/e6cb18a7d8.js" crossorigin="anonymous"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>

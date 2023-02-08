@@ -75,14 +75,14 @@ class Booking {
         endDateParam,
       ]
     };
-   
+
 
     const urls = {
       bookings: settings.db.url + '/' + settings.db.bookings + '?' + params.bookings.join('&'),
       eventsCurrent: settings.db.url + '/' + settings.db.events + '?' + params.eventsCurrent.join('&'),
       eventsRepeat:  settings.db.url + '/' + settings.db.events + '?' + params.eventsRepeat.join('&'),
     };
-   
+  
 
     Promise.all([
       fetch(urls.bookings),
@@ -100,6 +100,7 @@ class Booking {
         ]);
       })
       .then(([bookings, eventsCurrent, eventsRepeat]) => {
+
 
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
@@ -128,7 +129,9 @@ class Booking {
         }
       }
     }
-    
+
+
+
     thisBooking.updateDOM();
   }
 
@@ -169,7 +172,7 @@ class Booking {
         event.target.classList.add(classNames.booking.tableClicked);
 
         thisBooking.tablesClicked.push(tableNm);
-        console.log('tablesClicked: ',thisBooking.tablesClicked);
+       
 
         for ( let table of thisBooking.dom.tables ){
           table.classList.remove('alert');
@@ -182,7 +185,7 @@ class Booking {
         const tableIndex = thisBooking.tablesClicked.indexOf(tableNm);
         console.log(tableIndex);
         thisBooking.tablesClicked.splice(tableIndex, 1);
-        console.log('tablesClicked: ',thisBooking.tablesClicked);
+
       } else {
         window.alert('This table is not available at this time!');
       }

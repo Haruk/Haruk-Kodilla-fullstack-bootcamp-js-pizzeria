@@ -1,7 +1,9 @@
+
+import {select} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
-import { select } from '../settings.js';
 
 class CartProduct {
+
   constructor(menuProduct, element){
     const thisCartProduct = this;
 
@@ -10,12 +12,11 @@ class CartProduct {
     thisCartProduct.amount = menuProduct.amount;
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.price = menuProduct.price;
+    thisCartProduct.params = menuProduct.params;
 
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
-
-    // console.log(thisCartProduct);
   }
 
   getElements(element){
@@ -24,10 +25,10 @@ class CartProduct {
     thisCartProduct.dom = {};
 
     thisCartProduct.dom.wrapper = element;
-    thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
-    thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
-    thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
-    thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
+    thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+    thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+    thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
+    thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
 
   }
 
@@ -38,7 +39,8 @@ class CartProduct {
 
     thisCartProduct.dom.amountWidget.addEventListener('updated', () => {
 
-      thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amountWidget.value;
+      thisCartProduct.amount = thisCartProduct.amountWidget.value;
+      thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
 
     });
@@ -80,8 +82,10 @@ class CartProduct {
       amount: thisCartProduct.amount,
       priceSingle: thisCartProduct.priceSingle,
       price: thisCartProduct.price,
-      params: [thisCartProduct.menuProduct],
+      params: thisCartProduct.params,
     };
+
+    console.log(orderSummary);
 
     return orderSummary;
   }
