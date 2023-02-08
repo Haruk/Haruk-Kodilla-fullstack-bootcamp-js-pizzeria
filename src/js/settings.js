@@ -1,5 +1,3 @@
-/* global Handlebars */
-
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
@@ -27,13 +25,13 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount',
+      input: 'input.amount', // CODE CHANGED
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
     datePicker: {
       wrapper: '.date-picker',
-      input: 'input[name="date"]',
+      input: `input[name="date"]`,
     },
     hourPicker: {
       wrapper: '.hour-picker',
@@ -44,7 +42,7 @@ export const select = {
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
-    totalNumber: '.cart__total-number',
+    totalNumber: `.cart__total-number`,
     totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
     subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
     deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
@@ -62,9 +60,13 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
+    phoneInput: '.order-confirmation [name="phone"]',
+    addressInput: '.order-confirmation [name="address"]',
+    startersCheck: '.booking-options [name="starter"]',
     tables: '.floor-plan .table',
-    form: '.booking-form',
-    formSubmit: '.booking-form [type="submit"]',
+    floor: '.floor-plan',
+    orderConfirmation:'.order-confirmation input',
+    sendResBtn: '#booking .order-confirmation .btn-secondary',
   },
   nav: {
     links: '.main-nav a',
@@ -82,7 +84,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
-    tableToBeBooked: 'tobebooked',    
+    tableClicked: 'clicked',
   },
   nav: {
     active: 'active',
@@ -93,32 +95,34 @@ export const classNames = {
 };
 
 export const settings = {
-  hours: {
-    open: 12,
-    close: 24,
-  },
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
-    defaultMax: 9,
-  },
-  datePicker: {
-    maxDaysInFuture: 14,
+    defaultMax: 10,
   },
   cart: {
     defaultDeliveryFee: 20,
   },
+  hours: {
+    open: 12,
+    close: 24,
+  },
+  datePicker: {
+    maxDaysInFuture: 14,
+  },
   booking: {
     tableIdAttribute: 'data-table',
-    peopleAmountDefault: 1,
-    hoursAmountDefault: 1,    
+    peopleWidget: {
+      defaultMin: 1,
+      defaultMax: 4,
+    },
   },
   db: {
     url: '//localhost:3131',
-    product: 'product',
-    order: 'order',
-    booking: 'booking',
-    event: 'event',
+    products: 'products',
+    orders: 'orders',
+    bookings: 'bookings',
+    events: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
@@ -130,4 +134,5 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+
 };

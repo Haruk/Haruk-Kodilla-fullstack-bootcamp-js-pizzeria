@@ -79,7 +79,7 @@ const app = {
         thisApp.initMenu();
       });
 
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
+ 
   },
 
   initMenu(){
