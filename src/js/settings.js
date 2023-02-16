@@ -26,7 +26,7 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount',
+      input: 'input.amount', // CODE CHANGED
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
@@ -119,7 +119,7 @@ export const settings = {
     },
   },
   db: {
-    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
+    url: '//localhost:3131',
     products: 'products',
     orders: 'orders',
     bookings: 'bookings',
